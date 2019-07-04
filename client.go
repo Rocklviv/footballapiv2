@@ -50,7 +50,6 @@ func (c *Client) doRequest(method, url string, values url.Values) (js *json.Deco
 		URL:    prepareURL(url, values),
 		Header: http.Header{},
 	}
-	fmt.Println("[DEBUG] REQUEST: ", req)
 	if len(c.apikey) < 0 {
 		fmt.Println("Cannot find API KEY.")
 		os.Exit(1)
@@ -89,7 +88,6 @@ func prepareURL(path string, values url.Values) *url.URL {
 
 	for k, v := range values {
 		for _, vv := range v {
-			fmt.Println(vv, reflect.TypeOf(vv).Kind() == reflect.String)
 			if reflect.TypeOf(vv).Kind() == reflect.String && vv == "" {
 				values.Del(k)
 			} else if reflect.TypeOf(vv).Kind() == reflect.Int && len(vv) >= 0 {

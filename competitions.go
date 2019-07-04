@@ -10,7 +10,6 @@ func (c *Client) GetCompetitions(values interface{}) []Competition {
 	var competitions Competitions
 	var res *json.Decoder
 	var err error
-	fmt.Println(values)
 	if values == nil {
 		res, err = c.doRequest("GET", "competitions", nil)
 	} else {
