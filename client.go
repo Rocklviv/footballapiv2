@@ -89,6 +89,7 @@ func prepareURL(path string, values url.Values) *url.URL {
 
 	for k, v := range values {
 		for _, vv := range v {
+			fmt.Println(vv, reflect.TypeOf(vv).Kind() == reflect.String)
 			if reflect.TypeOf(vv).Kind() == reflect.String && vv == "" {
 				values.Del(k)
 			} else if reflect.TypeOf(vv).Kind() == reflect.Int && len(vv) >= 0 {

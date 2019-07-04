@@ -1,6 +1,7 @@
 package footballapiv2
 
 import (
+	"fmt"
 	"net/url"
 	"reflect"
 	"strconv"
@@ -31,6 +32,8 @@ func structToMap(i interface{}) (values url.Values) {
 				v = string(f.Bytes())
 			case string:
 				v = f.String()
+			case []string:
+				fmt.Println(reflect.TypeOf(iVal).Kind())
 			}
 			values.Set(strings.ToLower(typ.Field(i).Name), v)
 		}
