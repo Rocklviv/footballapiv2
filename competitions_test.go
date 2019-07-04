@@ -48,7 +48,6 @@ func TestWithBothFilters(t *testing.T) {
 		Areas: "2077,2061",
 		Plan:  "TIER_ONE",
 	}
-	t.Log(filter)
 	res := client.GetCompetitions(&filter)
 	if len(res) <= 1 {
 		t.Error()
