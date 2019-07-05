@@ -9,12 +9,15 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"time"
 )
 
 const (
 	// APIURL - URL of football-data version 2
 	APIURL = "http://api.football-data.org/v2/"
 )
+
+var countRequest = 0
 
 // Client struct that handles
 // `httpClient http.Client`
@@ -58,11 +61,18 @@ func (c *Client) doRequest(method, url string, values url.Values) (js *json.Deco
 	req.Header.Set("X-Auth-Token", c.apikey)
 	req.Header.Set("User-Agent", "go-football-data-api/2.0")
 
+	if countRequest >= c.rpm {
+		fmt.Println("[INFO] Timeout 60 seconds. Maximum requests per minute: ", c.rpm)
+		time.Sleep(60 * time.Second)
+		countRequest = 0
+	}
+
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
 		fmt.Println(err)
 	}
 	defer resp.Body.Close()
+	countRequest++
 
 	if resp.StatusCode != 200 {
 		err = fmt.Errorf("Status Code: %d, - Status: %s", resp.StatusCode, resp.Status)

@@ -51,3 +51,20 @@ func TestGetTeamsError(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestGetTeamsWStages(t *testing.T) {
+	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
+
+	filter := TeamsFilters{
+		Stage: "GROUP_STAGE",
+	}
+
+	res, err := client.GetTeams(2000, &filter)
+	if err != nil {
+		t.Error()
+	}
+
+	if res.Competition.ID != 2000 {
+		t.Error()
+	}
+}
