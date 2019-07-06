@@ -1,6 +1,7 @@
 package footballapiv2
 
 import (
+	"bytes"
 	"fmt"
 	"net/url"
 	"reflect"
@@ -35,7 +36,7 @@ func structToMap(i interface{}) (values url.Values) {
 			case []string:
 				fmt.Println(reflect.TypeOf(iVal).Kind())
 			}
-			values.Set(strings.ToLower(typ.Field(i).Name), v)
+			values.Set(makeFirstLowerCase(typ.Field(i).Name), v)
 		}
 		return
 	}
@@ -45,3 +46,16 @@ func structToMap(i interface{}) (values url.Values) {
 // func setNilIf(v *interface{}) {
 // 	*v = nil
 // }
+
+func makeFirstLowerCase(str string) string {
+	if len(str) < 2 {
+		return strings.ToLower(str)
+	}
+
+	bts := []byte(str)
+
+	lc := bytes.ToLower([]byte{bts[0]})
+	rest := bts[1:]
+
+	return string(bytes.Join([][]byte{lc, rest}, nil))
+}

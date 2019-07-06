@@ -33,14 +33,17 @@ type TeamsList struct {
 	Teams       []Team
 	Filters     struct{}
 	Competition Competition
-	Season      struct {
-		ID              uint16
-		StartDate       string
-		EndDate         string
-		CurrentMatchday uint
-		AvailableStages []interface{}
-		Winner          string
-	}
+	Season      Season
+}
+
+// Season information
+type Season struct {
+	ID              uint16
+	StartDate       string
+	EndDate         string
+	CurrentMatchday uint
+	AvailableStages []interface{}
+	Winner          string
 }
 
 // Team infomration
@@ -62,4 +65,38 @@ type Team struct {
 	ClubColors  string
 	Venue       string
 	LastUpdated string
+}
+
+// ListStandings infomration
+type ListStandings struct {
+	Filters     struct{}
+	Competition Competition
+	Season      Season
+	Standings   []Standing
+}
+
+// Standing datastruct
+type Standing struct {
+	Stage string
+	Type  string
+	Group string
+	Table []Table
+}
+
+// Table - standing table of required competition
+type Table struct {
+	Position uint8
+	Team     struct {
+		ID       uint8
+		Name     string
+		CrestURL string
+	}
+	PlayedGames    uint8
+	Won            uint8
+	Draw           uint8
+	Lost           uint8
+	Points         uint8
+	GoalsFor       uint16
+	GoalsAgaints   uint16
+	GoalDifference uint16
 }
