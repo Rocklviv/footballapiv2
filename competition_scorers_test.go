@@ -11,7 +11,7 @@ type ScorersFilter struct {
 	Limit  uint8
 }
 
-func TestGetListOfScorersWFilters(t *testing.T) {
+func TestCompetitionScorersWFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
 
 	filter := ScorersFilter{
@@ -19,7 +19,7 @@ func TestGetListOfScorersWFilters(t *testing.T) {
 		Limit:  20,
 	}
 
-	res, err := client.GetListOfScorers(2021, &filter)
+	res, err := client.CompetitionScorers(2021, &filter)
 	if err != nil {
 		t.Error()
 	}
@@ -34,9 +34,9 @@ func TestGetListOfScorersWFilters(t *testing.T) {
 	}
 }
 
-func TestGetListOfScorersWOFilters(t *testing.T) {
+func TestCompetitionScorersWOFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	res, err := client.GetListOfScorers(2021, nil)
+	res, err := client.CompetitionScorers(2021, nil)
 
 	if err != nil {
 		t.Error()
@@ -47,9 +47,9 @@ func TestGetListOfScorersWOFilters(t *testing.T) {
 	}
 }
 
-func TestGetListOfScorersError(t *testing.T) {
+func TestCompetitionScorersError(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	_, err := client.GetListOfScorers(0, nil)
+	_, err := client.CompetitionScorers(0, nil)
 
 	if err == nil {
 		t.Error()

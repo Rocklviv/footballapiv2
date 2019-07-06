@@ -11,9 +11,9 @@ type TeamsFilters struct {
 	Stage  string
 }
 
-func TestGetTeamsWOFilters(t *testing.T) {
+func TestCompetitionTeamsWOFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	res, err := client.GetTeams(2021, nil)
+	res, err := client.CompetitionTeams(2021, nil)
 
 	if err != nil {
 		t.Error()
@@ -24,14 +24,14 @@ func TestGetTeamsWOFilters(t *testing.T) {
 	}
 }
 
-func TestGetTeamsWFilters(t *testing.T) {
+func TestCompetitionTeamsWFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
 
 	filter := TeamsFilters{
 		Season: "2018",
 	}
 
-	res, err := client.GetTeams(2021, &filter)
+	res, err := client.CompetitionTeams(2021, &filter)
 	if err != nil {
 		t.Error()
 	}
@@ -43,23 +43,23 @@ func TestGetTeamsWFilters(t *testing.T) {
 	}
 }
 
-func TestGetTeamsError(t *testing.T) {
+func TestCompetitionTeamsError(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	_, err := client.GetTeams(0, nil)
+	_, err := client.CompetitionTeams(0, nil)
 
 	if err == nil {
 		t.Error()
 	}
 }
 
-func TestGetTeamsWStages(t *testing.T) {
+func TestCompetitionTeamsWStages(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
 
 	filter := TeamsFilters{
 		Stage: "GROUP_STAGE",
 	}
 
-	res, err := client.GetTeams(2000, &filter)
+	res, err := client.CompetitionTeams(2000, &filter)
 	if err != nil {
 		t.Error()
 	}

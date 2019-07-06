@@ -9,13 +9,13 @@ type StandingFilter struct {
 	StandingType string
 }
 
-func TestGetStandings(t *testing.T) {
+func TestCompetitionStandings(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
 	filter := StandingFilter{
 		StandingType: "HOME",
 	}
 
-	res, err := client.GetStandings(2021, &filter)
+	res, err := client.CompetitionStandings(2021, &filter)
 	if err != nil {
 		t.Error()
 	}
@@ -28,10 +28,10 @@ func TestGetStandings(t *testing.T) {
 	}
 }
 
-func TestGetStandingsWOFilters(t *testing.T) {
+func TestCompetitionStandingsWOFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
 
-	res, err := client.GetStandings(2021, nil)
+	res, err := client.CompetitionStandings(2021, nil)
 	if err != nil {
 		t.Error()
 	}

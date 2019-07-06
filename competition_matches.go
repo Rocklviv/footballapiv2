@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-// GetMatches returns list of matches from required competition
-func (c *Client) GetMatches(competitionID int, values interface{}) (*ListLeagueMatches, error) {
+// CompetitionMatches returns list of matches from required competition
+func (c *Client) CompetitionMatches(competitionID int, values interface{}) (*ListLeagueMatches, error) {
 	var listLeagueMatches ListLeagueMatches
 	var res *json.Decoder
 	var err error
