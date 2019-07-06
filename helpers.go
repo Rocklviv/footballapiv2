@@ -56,3 +56,11 @@ func makeFirstLowerCase(str string) string {
 
 	return string(bytes.Join([][]byte{lc, rest}, nil))
 }
+
+func validateFilter(filter interface{}, str string) bool {
+	res := structToMap(filter)
+	if _, ok := res[str]; ok {
+		return true
+	}
+	return false
+}

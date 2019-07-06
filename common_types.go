@@ -43,7 +43,13 @@ type Season struct {
 	EndDate         string
 	CurrentMatchday uint
 	AvailableStages []interface{}
-	Winner          string
+	Winner          struct {
+		ID        uint16
+		Name      string
+		ShortName string
+		TLA       string
+		CrestURL  string
+	}
 }
 
 // Team infomration
@@ -219,4 +225,42 @@ type Player struct {
 	Position       string
 	ShirtNumber    uint8
 	LastUpdated    string
+}
+
+// ListMatches represents matches for specified competition(s)
+type ListMatches struct {
+	Count   uint8
+	Filters struct {
+		DateFrom     string
+		DateTo       string
+		Permissions  string
+		Competitions map[string]int
+	}
+	Matches []Match
+}
+
+// Match represents fixture/match for competition/matchday
+type Match struct {
+	ID          uint32
+	Competition struct {
+		ID   uint16
+		Name string
+	}
+	Season      Season
+	UtcDate     string
+	Status      string
+	Matchday    uint8
+	Stage       string
+	Group       string
+	LastUpdated string
+	Score       Score
+	HomeTeam    struct {
+		ID   uint32
+		Name string
+	}
+	AwayTeam struct {
+		ID   uint32
+		Name string
+	}
+	Referees Referees
 }
