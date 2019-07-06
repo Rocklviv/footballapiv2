@@ -185,3 +185,38 @@ type Bench struct {
 	Position    string
 	ShirtNumber uint8
 }
+
+// ListLeagueScorers represents list of best scorers in league/competition
+type ListLeagueScorers struct {
+	Count   uint8
+	Filters struct {
+		Limit uint8
+	}
+	Competition Competition
+	Season      Season
+	Scorers     []Scorers
+}
+
+// Scorers represent exact goal scorer
+type Scorers struct {
+	Player Player
+	Team   struct {
+		ID   uint8
+		Name string
+	}
+	NumberOfGoals uint16
+}
+
+// Player represents player information
+type Player struct {
+	ID             uint16
+	Name           string
+	FirtsName      string
+	LastName       string
+	DateOfBirth    string
+	CountryOfBirth string
+	Nationality    string
+	Position       string
+	ShirtNumber    uint8
+	LastUpdated    string
+}
