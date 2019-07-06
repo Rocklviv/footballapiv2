@@ -100,3 +100,88 @@ type Table struct {
 	GoalsAgaints   uint16
 	GoalDifference uint16
 }
+
+// ListLeagueMatches represens matches in required league
+type ListLeagueMatches struct {
+	Count   uint8
+	Filters struct {
+		MatchDay string
+	}
+	Competition Competition
+	Matches     []LeagueMatches
+}
+
+// LeagueMatches represents schema of league match
+type LeagueMatches struct {
+	ID          uint16
+	Season      Season
+	UtcData     string
+	Status      string
+	Matchday    uint8
+	Stage       string
+	Group       string
+	LastUpdated string
+	Score       Score
+	HomeTeam    struct {
+		ID    uint16
+		Name  string
+		Coach struct {
+			ID             uint16
+			Name           string
+			CountryOfBirth string
+			Nationality    string
+		}
+		LineUp []LineUp
+		Bench  []Bench
+	}
+	AwayTeam struct {
+		ID   uint16
+		Name string
+	}
+	Referees []Referees
+}
+
+// Score match score
+type Score struct {
+	Winner   string
+	Duration string
+	FullTime struct {
+		HomeTeam uint8
+		AwayTeam uint8
+	}
+	HalfTime struct {
+		HomeTeam uint8
+		AwayTeam uint8
+	}
+	ExtraTime struct {
+		HomeTeam uint8
+		AwayTeam uint8
+	}
+	Penalties struct {
+		HomeTeam uint8
+		AwayTeam uint8
+	}
+}
+
+// Referees represents referee
+type Referees struct {
+	ID          uint16
+	Name        string
+	Nationality string
+}
+
+// LineUp represents lineup of the match
+type LineUp struct {
+	ID          uint8
+	Name        string
+	Position    string
+	ShirtNumber uint8
+}
+
+// Bench represents players on a bench
+type Bench struct {
+	ID          uint8
+	Name        string
+	Position    string
+	ShirtNumber uint8
+}
