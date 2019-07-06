@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-// GetTeams returns list of teams in competition/league.
-func (c *Client) GetTeams(competitionID int, values interface{}) (*TeamsList, error) {
+// CompetitionTeams returns list of teams in competition/league.
+func (c *Client) CompetitionTeams(competitionID int, values interface{}) (*TeamsList, error) {
 	var teams TeamsList
 	var res *json.Decoder
 	var err error

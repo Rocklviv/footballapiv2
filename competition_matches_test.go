@@ -16,9 +16,9 @@ type MatchesFilter struct {
 	Season   string
 }
 
-func TestListMatchesWOFilters(t *testing.T) {
+func TestCompetitionMatchesWOFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	res, err := client.GetMatches(2021, nil)
+	res, err := client.CompetitionMatches(2021, nil)
 
 	if err != nil {
 		t.Error()
@@ -29,14 +29,14 @@ func TestListMatchesWOFilters(t *testing.T) {
 	}
 }
 
-func TestListMatchesWFilters(t *testing.T) {
+func TestCompetitionMatchesWFilters(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
 	filter := MatchesFilter{
 		Matchday: "1",
 		Season:   "2018",
 	}
 
-	res, err := client.GetMatches(2021, &filter)
+	res, err := client.CompetitionMatches(2021, &filter)
 	if err != nil {
 		t.Error()
 	}
@@ -52,9 +52,9 @@ func TestListMatchesWFilters(t *testing.T) {
 	}
 }
 
-func TestListMatchesError(t *testing.T) {
+func TestCompetitionMatchesError(t *testing.T) {
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	_, err := client.GetMatches(0, nil)
+	_, err := client.CompetitionMatches(0, nil)
 
 	if err == nil {
 		t.Error()

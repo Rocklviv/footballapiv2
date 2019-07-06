@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-// GetStandings returns
-func (c *Client) GetStandings(competitionID int, values interface{}) (*ListStandings, error) {
+// CompetitionStandings returns
+func (c *Client) CompetitionStandings(competitionID int, values interface{}) (*ListStandings, error) {
 	var standing ListStandings
 	var res *json.Decoder
 	var err error
