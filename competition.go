@@ -10,6 +10,9 @@ func (c *Client) GetCompetition(id int) (*Competition, error) {
 	if err != nil {
 		return nil, err
 	}
-	res.Decode(&competition)
+	err = res.Decode(&competition)
+	if err != nil {
+		return nil, err
+	}
 	return &competition, nil
 }

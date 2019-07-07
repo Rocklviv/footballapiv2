@@ -31,7 +31,10 @@ func (c *Client) ListOfMatches(values interface{}) (*ListMatches, error) {
 		return nil, err
 	}
 
-	res.Decode(&matches)
+	err = res.Decode(&matches)
+	if err != nil {
+		return nil, err
+	}
 	return &matches, nil
 }
 
@@ -46,7 +49,10 @@ func (c *Client) GetMatch(matchID uint32) (*Head2HeadMatch, error) {
 		if err != nil {
 			return nil, err
 		}
-		res.Decode(&match)
+		err = res.Decode(&match)
+		if err != nil {
+			return nil, err
+		}
 		return &match, nil
 	}
 	return nil, fmt.Errorf("matchID should be specified")

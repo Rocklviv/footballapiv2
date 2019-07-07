@@ -87,3 +87,5 @@ func main() {
 
 ### Author
 Denys Chekirda aka Rocklviv
+
+### License

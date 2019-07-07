@@ -2,11 +2,10 @@ package footballapiv2
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // GetCompetitions get all competitions that are available in api.
-func (c *Client) GetCompetitions(values interface{}) []Competition {
+func (c *Client) GetCompetitions(values interface{}) ([]Competition, error) {
 	var competitions Competitions
 	var res *json.Decoder
 	var err error
@@ -16,13 +15,13 @@ func (c *Client) GetCompetitions(values interface{}) []Competition {
 		res, err = c.doRequest("GET", "competitions", structToMap(values))
 	}
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 
 	err = res.Decode(&competitions)
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 
-	return competitions.Competitions
+	return competitions.Competitions, nil
 }

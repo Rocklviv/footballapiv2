@@ -24,6 +24,9 @@ func (c *Client) CompetitionScorers(competitionID uint16, values interface{}) (*
 		return nil, err
 	}
 
-	res.Decode(&scorers)
+	err = res.Decode(&scorers)
+	if err != nil {
+		return nil, err
+	}
 	return &scorers, nil
 }

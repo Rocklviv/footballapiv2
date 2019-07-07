@@ -22,6 +22,9 @@ func (c *Client) CompetitionStandings(competitionID int, values interface{}) (*L
 		return nil, err
 	}
 
-	res.Decode(&standing)
+	err = res.Decode(&standing)
+	if err != nil {
+		return nil, err
+	}
 	return &standing, nil
 }
