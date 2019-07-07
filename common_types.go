@@ -243,7 +243,7 @@ type ListMatches struct {
 type Match struct {
 	ID          uint32
 	Competition struct {
-		ID   uint16
+		ID   uint32
 		Name string
 	}
 	Season      Season
@@ -263,4 +263,23 @@ type Match struct {
 		Name string
 	}
 	Referees Referees
+}
+
+// Head2HeadMatch represents head-to-head match in required competition.
+type Head2HeadMatch struct {
+	Head2Head struct {
+		NumberOfMatches uint8
+		TotalGoals      uint16
+		HomeTeam        struct {
+			Wins   uint8
+			Draws  uint8
+			Losses uint8
+		}
+		AwayTeam struct {
+			Wins   uint8
+			Draws  uint8
+			Losses uint8
+		}
+	}
+	Match Match
 }

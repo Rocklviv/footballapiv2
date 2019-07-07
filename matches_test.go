@@ -12,11 +12,11 @@ type DateFilter struct {
 type NormalFilter struct {
 	DateFrom     string
 	DateTo       string
-	Competitions uint16
+	Competitions uint32
 }
 
 type MatchesCompetitionFilter struct {
-	Competitions uint16
+	Competitions uint32
 }
 
 func TestListMatchesWOFilters(t *testing.T) {
@@ -84,6 +84,18 @@ func TestListMatchesWCompetitionFilter(t *testing.T) {
 	}
 
 	if res.Count < 0 {
+		t.Error()
+	}
+}
+
+func TestGetMatch(t *testing.T) {
+	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
+
+	res, err := client.GetMatch(204950)
+	if err != nil {
+		t.Error()
+	}
+	if res.Match.ID != 204950 {
 		t.Error()
 	}
 }
