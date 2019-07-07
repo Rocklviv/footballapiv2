@@ -6,7 +6,7 @@ import (
 )
 
 type Filter struct {
-	Areas []int
+	Areas string
 	Plan  string
 }
 
@@ -31,11 +31,9 @@ func TestFilterTier(t *testing.T) {
 }
 
 func TestFilterArea(t *testing.T) {
-	var areas []int
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	areas = append(areas, 2077)
 	filter := Filter{
-		Areas: areas,
+		Areas: "2077",
 	}
 
 	res := client.GetCompetitions(&filter)
@@ -45,18 +43,13 @@ func TestFilterArea(t *testing.T) {
 }
 
 func TestWithBothFilters(t *testing.T) {
-	var areas []int
 	client := NewClient(os.Getenv("FOOTBALL_API_KEY"))
-	areas = append(areas, 2077)
 	filter := Filter{
-		Areas: areas,
+		Areas: "2077,2061",
 		Plan:  "TIER_ONE",
 	}
-	t.Log(filter)
 	res := client.GetCompetitions(&filter)
 	if len(res) <= 1 {
 		t.Error()
 	}
-	t.Log(len(res))
-	t.Log(res)
 }
