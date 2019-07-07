@@ -22,6 +22,9 @@ func (c *Client) CompetitionMatches(competitionID int, values interface{}) (*Lis
 		return nil, err
 	}
 
-	res.Decode(&listLeagueMatches)
+	err = res.Decode(&listLeagueMatches)
+	if err != nil {
+		return nil, err
+	}
 	return &listLeagueMatches, nil
 }
