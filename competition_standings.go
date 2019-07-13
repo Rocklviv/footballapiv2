@@ -6,7 +6,7 @@ import (
 )
 
 // CompetitionStandings returns
-func (c *Client) CompetitionStandings(competitionID int, values interface{}) (*ListStandings, error) {
+func (c *Client) CompetitionStandings(competitionID int16, values interface{}) (*ListStandings, error) {
 	var standing ListStandings
 	var res *json.Decoder
 	var err error
