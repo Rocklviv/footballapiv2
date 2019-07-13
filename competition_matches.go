@@ -6,7 +6,7 @@ import (
 )
 
 // CompetitionMatches returns list of matches from required competition
-func (c *Client) CompetitionMatches(competitionID int, values interface{}) (*ListLeagueMatches, error) {
+func (c *Client) CompetitionMatches(competitionID int16, values interface{}) (*ListLeagueMatches, error) {
 	var listLeagueMatches ListLeagueMatches
 	var res *json.Decoder
 	var err error
