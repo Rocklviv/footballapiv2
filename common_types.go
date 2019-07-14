@@ -67,7 +67,7 @@ type Team struct {
 	Phone       string
 	Website     string
 	Email       string
-	Founded     uint8
+	Founded     string
 	ClubColors  string
 	Venue       string
 	LastUpdated string
