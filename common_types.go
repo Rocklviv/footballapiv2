@@ -104,7 +104,7 @@ type Table struct {
 	Points         int8
 	GoalsFor       uint8
 	GoalsAgaints   uint8
-	GoalDifference uint8
+	GoalDifference int8
 }
 
 // ListLeagueMatches represens matches in required league
