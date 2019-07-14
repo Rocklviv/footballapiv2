@@ -93,7 +93,7 @@ type Standing struct {
 type Table struct {
 	Position uint8
 	Team     struct {
-		ID       uint8
+		ID       uint16
 		Name     string
 		CrestURL string
 	}
@@ -101,10 +101,10 @@ type Table struct {
 	Won            uint8
 	Draw           uint8
 	Lost           uint8
-	Points         uint8
-	GoalsFor       uint16
-	GoalsAgaints   uint16
-	GoalDifference uint16
+	Points         int8
+	GoalsFor       uint8
+	GoalsAgaints   uint8
+	GoalDifference uint8
 }
 
 // ListLeagueMatches represens matches in required league
@@ -119,7 +119,7 @@ type ListLeagueMatches struct {
 
 // LeagueMatches represents schema of league match
 type LeagueMatches struct {
-	ID          uint16
+	ID          uint32
 	Season      Season
 	UtcData     string
 	Status      string
